@@ -17,8 +17,6 @@ development:
   encoding: unicode
   database: spree-sample-app_development
   pool: 5
-  username: spree-sample-app
-  password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -43,13 +41,3 @@ test:
   encoding: unicode
   database: spree-sample-app_test
   pool: 5
-  username: spree-sample-app
-  password:
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: spree-sample-app_production
-  pool: 5
-  username: spree-sample-app
-  password:
