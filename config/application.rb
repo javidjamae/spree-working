@@ -10,9 +10,9 @@ require "sprockets/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+  Bundler.require(:default, :assets, Rails.env)
 end
 
 module SpreeSampleApp
@@ -77,5 +77,17 @@ module SpreeSampleApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Javid - Added this to prevent error when pushing to Heroku when it tries to compile assets
+    # Error:
+    #    could not connect to server: Connection refused
+    #    Is the server running on host "127.0.0.1" and accepting
+    #    TCP/IP connections on port xxxx?
+    #    ...
+    #    Precompiling assets failed, enabling runtime asset compilation
+    # Reference: 
+    #    https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar#troubleshooting
+    config.assets.initialize_on_precompile = false
+      
   end
 end
